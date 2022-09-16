@@ -39,3 +39,21 @@ exports.getProductById = async (req, res) => {
     });
   }
 };
+exports.eliminarProductoPorId = async(req, res) => {
+  console.log("Ingreso a eliminar Producto");
+  const foundProduct = await Product.destroy({
+    where: {
+      id:req.params.id
+    }
+  });
+  if (foundProduct) {
+
+    res.status(200).json({
+      status: "Se elimino el producto correctamente",
+    });
+  } else {
+    res.status(404).json({
+      status: "not found",
+    });
+  }
+};
